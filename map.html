@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Peta Petualangan — Kenali Teman</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="hud">
+      <div class="hud-item hearts" id="mapHearts"></div>
+      <div class="hud-item" id="mapScore">⭐ 0</div>
+      <button class="hud-mute" id="hudMute">🔊</button>
+    </div>
+
+    <div class="page-header">
+      <span class="eyebrow-emoji">🗺️</span>
+      <h1>Peta Petualangan</h1>
+      <p>Selesaikan tiap level untuk membuka jalan berikutnya</p>
+    </div>
+
+    <div class="level-path" id="levelPath"></div>
+
+    <div class="center-col">
+      <button class="btn secondary" id="btnResetProgress">🔄 Ulangi dari Awal</button>
+      <a href="index.html" class="small-note" style="margin-top:10px;">⬅️ Kembali ke Beranda</a>
+    </div>
+  </div>
+
+  <script src="js/sound.js"></script>
+  <script src="js/map.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Kenali Teman — Adventure Mode</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="home-hero">
+      <span class="home-badge">🎮 Adventure Mode</span>
+
+      <div class="mascot-circle">💌</div>
+
+      <h1 class="home-title">GKG</h1>
+      <h1 class="home-title">(Getting to Know the Girls of RPL 1)</h1>
+      <p>Jelajahi 5 level seru, kumpulkan bintang, dan buktikan<br>seberapa kenal kamu sama teman sekelas!</p>
+
+      <div class="home-highscore" id="highscoreText">⭐ High Score: 0</div>
+
+      <div class="home-actions">
+        <button class="btn btn-block" id="btnMulai">▶️ Mulai Main</button>
+        <button class="btn secondary btn-block" id="btnCaraMain">❓ Cara Main</button>
+      </div>
+    </div>
+
+    <p class="small-note">💗 Dibuat dengan cinta untuk teman-teman sekelas</p>
+  </div>
+
+  <!-- Overlay Cara Main -->
+  <div class="overlay" id="overlayCaraMain" style="display:none;">
+    <div class="overlay-card">
+      <span class="overlay-emoji">📖</span>
+      <h2>Cara Main</h2>
+      <div class="guide-copy">
+        <h3>Kenali Teman</h3>
+        <div class="friend-list">
+          <div><span class="friend-identity"><img src="img/poto_safana.png" alt="Safana"><b>Safana (SF)</b></span><span>Dengar lagu · Baso ikan</span></div>
+          <div><span class="friend-identity"><img src="img/poto_syfa.png" alt="Syafa"><b>Syafa (SY)</b></span><span>Baca novel · Roti</span></div>
+          <div><span class="friend-identity"><img src="img/poto_hasna.png" alt="Hasna"><b>Hasna (HN)</b></span><span>Berenang · Kentang</span></div>
+          <div><span class="friend-identity"><img src="img/poto_lintang.png" alt="Lintang"><b>Lintang (LT)</b></span><span>Nonton drakor · Kwetiau</span></div>
+          <div><span class="friend-identity"><img src="img/poto_deby.png" alt="Debi"><b>Debi (DB)</b></span><span>Baca komik · Ayam</span></div>
+          <div><span class="friend-identity"><img src="img/poto_camelia.png" alt="Camel"><b>Camel (CM)</b></span><span>Menggambar · Roti</span></div>
+          <div><span class="friend-identity"><img src="img/poto_navisa.png" alt="Navisa"><b>Navisa (NV)</b></span><span>Nyanyi · Pangsit</span></div>
+          <div><span class="friend-identity"><img src="img/poto_septianni.png" alt="Septianni"><b>Septianni (SP)</b></span><span>Voli · Dimsam mentai</span></div>
+          <div><span class="friend-identity"><img src="img/poto_nadia.png" alt="Nadia"><b>Nadia (ND)</b></span><span>Dengerin musik · Martabak</span></div>
+          <div><span class="friend-identity"><img src="img/poto_nur.png" alt="Nur"><b>Nur (NR)</b></span><span>Lumpia · Masak kue</span></div>
+          <div><span class="friend-identity"><img src="img/poto_dea.png" alt="Dea"><b>Dea (DE)</b></span><span>Menggambar · Ayam bakar</span></div>
+          <div><span class="friend-identity"><img src="img/poto_fitri.png" alt="Fitri"><b>Fitri (FT)</b></span><span>Nyanyi · Baso</span></div>
+          <div><span class="friend-identity"><img src="img/poto_reffa.png" alt="Reffa"><b>Reffa (RF)</b></span><span>Baca novel · Seblak</span></div>
+        </div>
+        <h3>Cara Bermain</h3>
+        <ol class="level-list">
+          <li>🏠 <b>Level 1:</b> Tebak nama dari foto teman.</li>
+          <li>🔎 <b>Level 2:</b> Tebak teman dari petunjuk sebelum waktu habis.</li>
+          <li>🎁 <b>Level 3:</b> Pilih satu Mystery Box dan jawab pertanyaannya.</li>
+          <li>🧠 <b>Level 4:</b> Cocokkan foto dengan nama teman.</li>
+          <li>🏆 <b>Level 5:</b> Selesaikan tantangan campuran yang lebih cepat.</li>
+        </ol>
+        <p class="guide-note">❤️ Kamu punya 5 nyawa. Jawaban salah mengurangi 1 nyawa.</p>
+      </div>
+      <button class="btn btn-block" id="btnTutupCaraMain">Oke, Siap!</button>
+    </div>
+  </div>
+
+  <script src="js/sound.js"></script>
+  <script>
+    const highscore = parseInt(localStorage.getItem("kt_highscore") || "0", 10);
+    document.getElementById("highscoreText").textContent = "⭐ High Score: " + highscore;
+
+    document.getElementById("btnMulai").addEventListener("click", () => {
+      SoundKit.click();
+      SoundKit.startMusic();
+      // Mulai petualangan baru dari Level 1.
+      localStorage.setItem("kt_session", JSON.stringify({ score: 0, lives: 5 }));
+      localStorage.setItem("kt_progress", "1");
+      localStorage.removeItem("kt_completed_level");
+      window.location.href = "map.html";
+    });
+
+    document.getElementById("btnCaraMain").addEventListener("click", () => {
+      SoundKit.click();
+      document.getElementById("overlayCaraMain").style.display = "flex";
+    });
+    document.getElementById("btnTutupCaraMain").addEventListener("click", () => {
+      SoundKit.click();
+      document.getElementById("overlayCaraMain").style.display = "none";
+    });
+  </script>
+</body>
+</html>

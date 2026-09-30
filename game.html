@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Main — Kenali Teman</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="hud">
+      <div class="hud-item hearts" id="gameHearts"></div>
+      <div class="hud-item" id="gameScore">⭐ 0</div>
+      <button class="hud-mute" id="hudMute">🔊</button>
+    </div>
+
+    <div class="page-header">
+      <h1 id="levelTitle" style="font-size:1.3rem;"></h1>
+    </div>
+
+    <div class="card" id="gameArea"></div>
+
+    <a href="map.html" class="small-note" style="margin-top:18px;">⬅️ Keluar ke Peta</a>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>

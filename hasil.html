@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Hasil Akhir — Kenali Teman</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="home-hero">
+      <span class="eyebrow-emoji" style="font-size:2.6rem;">🏆</span>
+      <h1>Petualangan Selesai!</h1>
+      <p>Kamu berhasil menyelesaikan semua level.</p>
+
+      <div class="card" style="width:100%;max-width:340px;">
+        <div class="center-col">
+          <div class="result-stars" id="resultStars">⭐⭐⭐</div>
+          <div class="result-score" id="resultScore">0</div>
+          <p style="margin:0;opacity:.7;">Total Poin</p>
+        </div>
+        <div style="margin-top:18px;">
+          <div class="result-row"><span>Skor Kamu</span><span id="rowScore">0</span></div>
+          <div class="result-row"><span>High Score</span><span id="rowHigh">0</span></div>
+        </div>
+      </div>
+
+      <div class="home-actions">
+        <button class="btn btn-block" id="btnMainLagi">🔄 Main Lagi</button>
+        <a href="index.html" class="btn secondary btn-block">🏠 Beranda</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/sound.js"></script>
+  <script>
+    const score = parseInt(localStorage.getItem("kt_lastscore") || "0", 10);
+    const highscore = parseInt(localStorage.getItem("kt_highscore") || "0", 10);
+
+    document.getElementById("resultScore").textContent = score;
+    document.getElementById("rowScore").textContent = score;
+    document.getElementById("rowHigh").textContent = highscore;
+
+    let stars = "⭐";
+    if (score >= 550) stars = "⭐⭐⭐";
+    else if (score >= 350) stars = "⭐⭐";
+    document.getElementById("resultStars").textContent = stars;
+
+    function confettiBurst() {
+      const colors = ["#FF9EC1", "#FFC857", "#7FDDC4", "#7FB8E0", "#F76E9C"];
+      for (let i = 0; i < 60; i++) {
+        const piece = document.createElement("div");
+        piece.className = "confetti-piece";
+        piece.style.left = Math.random() * 100 + "vw";
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDuration = 1.8 + Math.random() * 1.6 + "s";
+        piece.style.borderRadius = Math.random() > 0.5 ? "50%" : "2px";
+        document.body.appendChild(piece);
+        setTimeout(() => piece.remove(), 3400);
+      }
+    }
+    confettiBurst();
+    SoundKit.win();
+
+    document.getElementById("btnMainLagi").addEventListener("click", () => {
+      SoundKit.click();
+      localStorage.setItem("kt_progress", "1");
+      localStorage.setItem("kt_session", JSON.stringify({ score: 0, lives: 5 }));
+      window.location.href = "map.html";
+    });
+  </script>
+</body>
+</html>
